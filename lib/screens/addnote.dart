@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 import '../controllers/notecontroller.dart';
 
 class AddNote extends StatelessWidget {
@@ -14,8 +13,6 @@ class AddNote extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("New Note"),
-        backgroundColor: Colors.blue,
-        foregroundColor: Colors.white,
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blue,

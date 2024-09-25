@@ -22,7 +22,6 @@ class NoteDetailScreen extends StatelessWidget {
         onPressed: () {
           //controller.editNote(
           //titletextfieldvalue.text, contenttextfieldvalue.text, itsNumber);
-
           Get.back();
         },
         backgroundColor: Colors.green,
