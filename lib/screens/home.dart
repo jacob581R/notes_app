@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:notesapp/controllers/moodcontroller.dart';
 import 'package:notesapp/controllers/notecontroller.dart';
 import 'package:notesapp/models/note.dart';
 import 'package:notesapp/screens/addnote.dart';
@@ -9,7 +10,6 @@ import '../screens/notedetailscreen.dart';
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       appBar: AppBar(
         title: Text("Home page"),
@@ -20,17 +20,18 @@ class Home extends StatelessWidget {
         onPressed: () {
           Get.to(() => AddNote());
         },
+        backgroundColor: Colors.blue,
         child: Icon(
           Icons.add,
           color: Colors.white,
         ),
-        backgroundColor: Colors.blue,
       ),
       body: GetBuilder(
           init: NoteController(),
           builder: (controller) {
+            List<Note> notes = controller.getNotes();
             return ListView.builder(
-                itemCount: controller.notes.length,
+                itemCount: notes.length,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: EdgeInsets.all(12),
@@ -43,10 +44,10 @@ class Home extends StatelessWidget {
                               Icons.delete,
                               color: Colors.red,
                             )),
-                        tileColor: Colors.black45,
+                        tileColor: Color(0xffF5EFFF),
                         contentPadding: EdgeInsets.all(8),
-                        title: Text(controller.notes[index].title),
-                        subtitle: Text(controller.notes[index].content),
+                        title: Text(notes[index].title),
+                        subtitle: Text(notes[index].content),
                         enabled: true,
                         horizontalTitleGap: 50,
                         onTap: () {
@@ -54,8 +55,8 @@ class Home extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder: (context) => NoteDetailScreen(
-                                  note: controller.notes[index],
-                                  its_number: index),
+                                  note: controller.getNotes()[index],
+                                  itsNumber: index),
                             ),
                           );
                         }),
