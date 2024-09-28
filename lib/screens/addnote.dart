@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:notesapp/controllers/themeservice.dart';
 
 import '../controllers/notecontroller.dart';
 
 class AddNote extends StatelessWidget {
   AddNote({super.key});
   final NoteController controller = Get.put(NoteController());
-  final TextEditingController titleController = TextEditingController();
-  final TextEditingController contentController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    TextEditingController titleController = TextEditingController();
+    TextEditingController contentController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         title: Text("New Note"),

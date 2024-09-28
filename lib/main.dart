@@ -13,13 +13,11 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
-  ThemeService themeService = new ThemeService();
+  final ThemeService themeService = ThemeService();
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        title: 'Flutter Demo',
-        theme: themeService.theme, // Light theme
-        home: Home());
+        title: 'Flutter Demo', theme: themeService.theme, home: Home());
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:notesapp/controllers/notecontroller.dart';
 import 'package:notesapp/models/note.dart';
+import 'package:notesapp/screens/editnote.dart';
 
 class NoteDetailScreen extends StatelessWidget {
   final NoteController controller = Get.put(NoteController());
@@ -15,18 +16,22 @@ class NoteDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Note details"),
-        backgroundColor: Colors.blue,
-        foregroundColor: Colors.white,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          //controller.editNote(
-          //titletextfieldvalue.text, contenttextfieldvalue.text, itsNumber);
-          Get.back();
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => EditNote(
+                  title: note.title,
+                  content: note.content,
+                  itsNumber: itsNumber),
+            ),
+          );
         },
         backgroundColor: Colors.green,
         child: Icon(
-          Icons.save,
+          Icons.edit,
           color: Colors.white,
         ),
       ),
@@ -35,9 +40,17 @@ class NoteDetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(note.title),
+            Text(
+              note.title,
+              style: TextStyle(fontSize: 24),
+            ),
             SizedBox(height: 20),
-            Expanded(child: Text(note.content))
+            SingleChildScrollView(
+              child: Text(
+                note.content,
+                style: TextStyle(fontSize: 18),
+              ),
+            )
           ],
         ),
       ),

@@ -8,19 +8,20 @@ import 'package:notesapp/screens/addnote.dart';
 import '../screens/notedetailscreen.dart';
 
 class Home extends StatelessWidget {
-  ThemeService _themeService = new ThemeService();
+  Home({super.key});
+  final _themeService = ThemeService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Home page"),
         //backgroundColor: Colors.blue,
-        foregroundColor: Colors.white,
+        //foregroundColor: Colors.white,
         actions: [
           IconButton(
             icon: Icon(Icons.brightness_6),
             onPressed: () {
-              _themeService.switchTheme(); // Switch theme on button press
+              _themeService.switchTheme();
             },
           )
         ],
@@ -59,8 +60,11 @@ class Home extends StatelessWidget {
                           style: TextStyle(fontSize: 24),
                         ),
                         subtitle: Text(
+                          maxLines: 1,
                           notes[index].content,
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
                         ),
                         enabled: true,
                         horizontalTitleGap: 50,
